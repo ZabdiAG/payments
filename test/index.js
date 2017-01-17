@@ -1,10 +1,9 @@
 'use strict';
 
 var assert = require('assert');
-var nextPayments = require('../lib');
 
-describe('next-payments', function () {
-  it('should have unit test!', function () {
-    assert(false, 'we expected this package author to add actual unit tests.');
+describe('_initProcessor', function () {
+  it('throws an exception when the processor type is invalid', function () {
+    assert(false, 'fuck you chuy');
   });
 });
