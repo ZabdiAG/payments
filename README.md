@@ -14,7 +14,7 @@ var nextPayments = require('next-payments');
 
 var processor = new nextPayments(sourceType, params);
 
-processor.call(function(res){
+processor.process(function(res){
   if (res.success) {
     // sucessful payment logic
   } else {
