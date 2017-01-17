@@ -12,7 +12,15 @@ $ npm install --save next-payments
 ```js
 var nextPayments = require('next-payments');
 
-nextPayments('Rainbow');
+var processor = new nextPayments(sourceType, params);
+
+processor.process(function(res){
+  if (res.success) {
+    // sucessful payment logic
+  } else {
+    // failed payment logic
+  }
+});
 ```
 ## License
 
