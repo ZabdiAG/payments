@@ -4,7 +4,11 @@ var ConektaCard = require('../lib/conektaCard');
 var NextPayments = require('../lib');
 var expect = require('chai').expect;
 
-describe('_initProcessor', function () {
+describe('NextPayments', function () {
+  it('implements process fn', function () {
+    expect(NextPayments).to.respondTo('process');
+  });
+
   it('throws an exception when the processor type is invalid', function () {
     var fn = function () {
       return new NextPayments('');
