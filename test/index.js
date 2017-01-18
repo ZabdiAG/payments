@@ -1,24 +1,22 @@
-'use strict';
+import ConektaCard from '../lib/conektaCard';
+import NextPayments from '../lib';
+import {expect} from 'chai';
 
-var ConektaCard = require('../lib/conektaCard');
-var NextPayments = require('../lib');
-var expect = require('chai').expect;
-
-describe('NextPayments', function () {
-  it('implements process fn', function () {
+describe('NextPayments', () => {
+  it('implements process fn', () => {
     expect(NextPayments).to.respondTo('process');
   });
 
-  it('throws an exception when the processor type is invalid', function () {
-    var fn = function () {
+  it('throws an exception when the processor type is invalid', () => {
+    const fn = () => {
       return new NextPayments('');
     };
 
     expect(fn).to.throw(Error);
   });
 
-  it('returns conekta processor class', function () {
-    var sub = new NextPayments('ConektaCard');
+  it('returns conekta processor class', () => {
+    let sub = new NextPayments('ConektaCard');
 
     expect(sub.processor).to.be.an.instanceof(ConektaCard);
   });

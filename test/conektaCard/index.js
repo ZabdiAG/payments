@@ -1,22 +1,13 @@
-'use strict';
+import assert from 'assert';
+import {expect} from 'chai';
+import ConektaCard from '../../lib/ConektaCard';
 
-var expect = require('chai').expect;
-var ConektaCard = require('../../lib/conektaCard');
-var Response = require('../../lib/conektaCard');
+describe('#process', () => {
+  it('throws response object', () => {
+    let conektaCard = new ConektaCard();
 
-describe('Constructor', function () {
-  it('creates an instance of ConektaCard', function () {
-    var conektaCard = new ConektaCard();
-    expect(conektaCard).to.be.an.instanceof(ConektaCard);
-  });
-});
-
-describe('#process', function () {
-  it('throws response object', function () {
-    var conektaCard = new ConektaCard();
-    var cb = function () {
-      console.log('here i am');
-    };
-    expect(conektaCard.process(cb)).to.be.an.instanceof(Response);
+    conektaCard.process(res => {
+      assert(res.constructor.name, 'Response');
+    });
   });
 });
