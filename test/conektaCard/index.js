@@ -12,13 +12,13 @@ describe('#process', () => {
       });
   });
 
-  it('process a valid charge', () => {
+  it.only('process a valid charge', () => {
     let conektaCard = new ConektaCard({
       description: 'Stogies',
       amount: 5000,
       currency: 'mxn',
       reference_id: '98123-gave-me', // eslint-disable-line
-      card: 'tok_test_visa_4242', // demo testing card
+      card: 'tok_test_visa_4242',
       details: {
         email: 'john@doe.com',
         name: 'John Doe',
@@ -45,7 +45,7 @@ describe('#process', () => {
 
   it('process a invalid charge', () => {
     let conektaCard = new ConektaCard({
-      card: 'tok_test_visa_4242' // demo testing card
+      card: 'tok_test_visa_5020'
     });
 
     return conektaCard.process()
