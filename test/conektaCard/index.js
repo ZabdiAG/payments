@@ -12,7 +12,7 @@ describe('#process', () => {
       });
   });
 
-  it.only('process a valid charge', () => {
+  it('process a valid charge', () => {
     let conektaCard = new ConektaCard({
       description: 'Stogies',
       amount: 5000,
