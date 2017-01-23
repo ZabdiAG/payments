@@ -10,17 +10,15 @@ $ npm install --save next-payments
 ## Usage
 
 ```js
-var nextPayments = require('next-payments');
+var nextPayments = require('next-payments').default;
 
-var processor = new nextPayments(sourceType, params);
+var payment = new nextPayments('ConektaCard', {});
 
-processor.process(function(res){
-  if (res.success) {
-    // sucessful payment logic
-  } else {
-    // failed payment logic
-  }
-});
+payment.process()
+  .then(function (res) {
+  })
+  .catch(function (err) {
+  });
 ```
 ## License
 
