@@ -5,7 +5,7 @@ describe('#process', () => {
   it('throws response object', () => {
     let conektaCard = new ConektaCard();
 
-    conektaCard.process()
+    return conektaCard.process()
       .then(assert.fail)
       .catch(err => {
         assert(err.constructor.name, 'Response');
@@ -45,7 +45,7 @@ describe('#process', () => {
 
   it('process a invalid charge', () => {
     let conektaCard = new ConektaCard({
-      card: 'tok_test_visa_4242', // demo testing card
+      card: 'tok_test_visa_4242' // demo testing card
     });
 
     return conektaCard.process()

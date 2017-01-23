@@ -36,7 +36,8 @@
     "gulp-mocha": "^3.0.1",
     "gulp-nsp": "^2.1.0",
     "gulp-plumber": "^1.0.0",
-    "isparta": "^4.0.0"
+    "isparta": "^4.0.0",
+    "nock-vcr-recorder-mocha": "^0.3.2"
   },
   "eslintConfig": {
     "extends": "xo-space",
