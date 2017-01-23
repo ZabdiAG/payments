@@ -43,7 +43,7 @@ describe('#process', () => {
       .catch(assert.fail);
   });
 
-  it('process a invalid charge', () => {
+  it('process an invalid charge', () => {
     let conektaCard = new ConektaCard({
       card: 'tok_test_visa_5020'
     });
