@@ -1,5 +1,6 @@
-import {assert} from 'chai';
+import {expect, assert} from 'chai';
 import ConektaCard from '../../lib/ConektaCard';
+import nock from 'nock';
 
 describe('#process', () => {
   it('throws response object', () => {
@@ -12,35 +13,39 @@ describe('#process', () => {
       });
   });
 
-  it('process a valid charge', () => {
+  it.only('process a valid charge', () => {
+    nock('https://api.conekta.io')
+      .post('/charges')
+      .reply(200, {
+        'status': 200,
+        'message': 'simulated conekta response'
+      });
+
     let conektaCard = new ConektaCard({
-      description: 'Stogies',
       amount: 5000,
-      currency: 'mxn',
-      reference_id: '98123-gave-me', // eslint-disable-line
+      reference_id: 'S1550',
       card: 'tok_test_visa_4242',
+      currency: 'mxn',
+      description: 'servicio de mensajeria',
       details: {
-        email: 'john@doe.com',
-        name: 'John Doe',
-        phone: '1231233232',
-        line_items: [   // eslint-disable-line
-          {
-            name: 'Box of Cohiba S1s',
-            description: 'Imported From Mex.',
-            unit_price: 2000, // eslint-disable-line
-            quantity: 1,
-            sku: 'cohb_s1',
-            type: 'food'
-          }
+        email: 'rdz@gmail.com',
+        name: 'arnoldo rdz',
+        phone: '8114689871',
+        line_items: [
+        {
+          name: 'guia',
+          description: 'servicio mensajeria',
+          unit_price: 5000,
+          quantity: 1
+        }
         ]
       }
     });
 
     return conektaCard.process()
       .then(res => {
-        assert(true, res);
-      })
-      .catch(assert.fail);
+        expect(res.errors).to.equal(null);
+      }).catch(assert.fail);
   });
 
   it('process an invalid charge', () => {
