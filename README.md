@@ -18,23 +18,23 @@ https://www.conekta.io/es
 var nextPayments = require('next-payments').default;
 
 var payment = new nextPayments('ConektaCard', {
-  amount: 100,
-  currency: 'mxn',
-  description: 'short description',
-  reference_id: '001-id-test',
-  card: 'tok_test_visa_4242', // sample card from conekta
+  card: 'tok_test_visa_4242', 
+  amount: 5000, 
+  currency: 'mxn', 
+  reference_id: 'S1550', 
+  description: 'servicio de mensajeria', 
   details: {
-    phone: '1231232323',
-    name: 'John Doe',
-    email: 'john@doe.com'
-    line_items: [{
-      name: 'Box of Cohiba',
-      description: 'Imported From Mex',
-      unit_price: 3500,
-      quantity: 1,
-      tags: ['food', 'mexican food'],
-      type: 'physical'
-    }]
+    email: 'rdz@gmail.com', 
+    name: 'arnoldo rdz', 
+    phone: '8114689871', 
+    line_items: [
+      {
+        name: 'guia', 
+        description: 'servicio mensajeria', 
+        unit_price: 5000, 
+        quantity: 1
+      }
+    ]
   }
 });
 
