@@ -43,7 +43,7 @@ payment.process()
     // process valid 
   })
   .catch( err => {
-    // when an error ocurs
+    // when an error occurs
   });
 ```
 ## License
