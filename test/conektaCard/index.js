@@ -13,7 +13,7 @@ describe('#process', () => {
       });
   });
 
-  it.only('process a valid charge', () => {
+  it('process a valid charge', () => {
     nock('https://api.conekta.io')
       .post('/charges')
       .reply(200, {
