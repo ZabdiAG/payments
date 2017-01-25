@@ -9,7 +9,11 @@ $ npm install --save next-payments
 
 ## Usage
 
-If you plan to use Conekta as a payment method, you need to set an environment variable to work with, its name is CONEKTA_API_KEY and you can get it from
+In production mode you need to set the CONEKTA_API_KEY env variable:
+
+```js
+process.env.CONEKTA_API_KEY = "your_api_key";
+```
 
 https://www.conekta.io/es
 
