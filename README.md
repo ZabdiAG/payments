@@ -14,14 +14,36 @@ If you plan to use Conekta as a payment method, you need to set an environment v
 https://www.conekta.io/es
 
 ```js
+// If you plan to use conektacard provider: 
 var nextPayments = require('next-payments').default;
 
-var payment = new nextPayments('ConektaCard', {});
+var payment = new nextPayments('ConektaCard', {
+  amount: 100,
+  currency: 'mxn',
+  description: 'short description',
+  reference_id: '001-id-test',
+  card: 'tok_test_visa_4242', // sample card from conekta
+  details: {
+    phone: '1231232323',
+    name: 'John Doe',
+    email: 'john@doe.com'
+    line_items: [{
+      name: 'Box of Cohiba',
+      description: 'Imported From Mex',
+      unit_price: 3500,
+      quantity: 1,
+      tags: ['food', 'mexican food'],
+      type: 'physical'
+    }]
+  }
+});
 
 payment.process()
-  .then(function (res) {
+  .then( res => {
+    // process valid 
   })
-  .catch(function (err) {
+  .catch( err => {
+    // when an error ocurs
   });
 ```
 ## License
