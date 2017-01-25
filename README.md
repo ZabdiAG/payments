@@ -9,13 +9,11 @@ $ npm install --save next-payments
 
 ## Usage
 
-In production mode you need to set the CONEKTA_API_KEY env variable:
+Using the ConektaCard provider in production mode you need to set the CONEKTA_API_KEY env variable:
 
 ```js
 process.env.CONEKTA_API_KEY = "your_api_key";
 ```
-
-https://www.conekta.io/es
 
 ```js
 // If you plan to use conektacard provider: 
