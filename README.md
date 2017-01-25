@@ -9,6 +9,10 @@ $ npm install --save next-payments
 
 ## Usage
 
+If you plan to use Conekta as a payment method, you need to set an environment variable to work with, its name is CONEKTA_API_KEY and you can get it from
+
+https://www.conekta.io/es
+
 ```js
 var nextPayments = require('next-payments').default;
 
