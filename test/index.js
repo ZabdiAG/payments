@@ -1,4 +1,5 @@
 import ConektaCard from '../lib/conektaCard'
+import ComproPago from '../lib/comproPago'
 import NextPayments from '../lib'
 import {expect} from 'chai'
 
@@ -19,5 +20,11 @@ describe('NextPayments', () => {
     let sub = new NextPayments('ConektaCard')
 
     expect(sub.processor).to.be.an.instanceof(ConektaCard)
+  })
+
+  it('returns compropago processor class', () => {
+    let sub = new NextPayments('ComproPago')
+
+    expect(sub.processor).to.be.an.instanceof(ComproPago)
   })
 })
