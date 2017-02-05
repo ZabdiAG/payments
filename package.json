@@ -55,6 +55,7 @@
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.4.7",
+    "compropago-node": "0.0.0",
     "conekta": "^2.2.0",
     "joi": "^10.2.0"
   }
