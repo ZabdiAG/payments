@@ -13,7 +13,7 @@ describe('Response', () => {
 
     expect(res.errors).to.deep.equal({
       name: 'ProviderError',
-      message: 'There was an error processing the card.'
+      message: 'Hubo un error procesando la tarjeta'
     });
   });
 
@@ -24,7 +24,7 @@ describe('Response', () => {
     };
     const expected = {
       name: 'ValidationError',
-      message: 'The card is not valid',
+      message: 'Hubo errores de validación',
       details: {
         context: 'ConektaCard',
         messages: [{email: ['invalid email']}]
