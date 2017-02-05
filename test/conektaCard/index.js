@@ -13,7 +13,7 @@ describe('#process', () => {
       })
   })
 
-  it.only('process a valid charge', () => {
+  it('process a valid charge', () => {
     nock('https://api.conekta.io')
       .post('/charges')
       .reply(200, {
@@ -45,9 +45,7 @@ describe('#process', () => {
     return conektaCard.process()
       .then(res => {
         expect(res.errors).to.equal(null)
-      }).catch(err => {
-        console.log(err)
-      })
+      }).catch(assert.fail)
   })
 
   it('process an invalid charge', () => {
