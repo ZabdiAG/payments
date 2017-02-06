@@ -1,5 +1,5 @@
 import ConektaCard from '../lib/conektaCard'
-import ComproPago from '../lib/comproPago'
+import ComproPago from '../lib/compropago'
 import NextPayments from '../lib'
 import {expect} from 'chai'
 
