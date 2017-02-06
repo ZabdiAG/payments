@@ -11,6 +11,9 @@ var babel = require('gulp-babel');
 var del = require('del');
 var isparta = require('isparta');
 
+// Set necessary env vars for testing
+process.env.COMPROPAGO_API_KEY='pk_test_53960218928438ed7a'
+
 // Initialize the babel transpiler so ES2015 files gets compiled
 // when they're loaded
 require('babel-register');
