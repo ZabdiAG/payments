@@ -3,6 +3,19 @@ import ComproPago from '../../lib/comproPago'
 import nock from 'nock'
 
 describe('ComproPago', () => {
+  describe('verifyPayment', () => {
+    it('should return true', () => {
+      let id = 'ch_bcf5b67a-b4d7-4ca1-858f-d8b1bd48d552'
+      let amount = 123.45
+      ComproPago.verifyPayment(id, amount)
+        .then(res => {
+          expect(res)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    })
+  })
   describe('#process', () => {
     it('throws response object', () => {
       let comproPago = new ComproPago()
