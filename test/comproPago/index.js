@@ -7,6 +7,17 @@ describe('ComproPago', () => {
     it('should return true', () => {
       let id = 'ch_bcf5b67a-b4d7-4ca1-858f-d8b1bd48d552'
       let amount = 123.45
+      nock('https://api.conekta.io')
+        .get(`/charges/${id}`)
+        .reply(200, {
+          status: 200,
+          data: {
+            id: id,
+            type: 'charge.success',
+            paid: true,
+            amount: amount
+          }
+        })
       ComproPago.verifyPayment(id, amount)
         .then(res => {
           expect(res)
@@ -16,6 +27,7 @@ describe('ComproPago', () => {
         })
     })
   })
+
   describe('#process', () => {
     it('throws response object', () => {
       let comproPago = new ComproPago()
