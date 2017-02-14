@@ -6,60 +6,40 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _AbstractResponse2 = require('../AbstractResponse');
+
+var _AbstractResponse3 = _interopRequireDefault(_AbstractResponse2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Response = function () {
-  function Response() {
-    var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Response = function (_AbstractResponse) {
+  _inherits(Response, _AbstractResponse);
+
+  function Response() {
     _classCallCheck(this, Response);
 
-    this.errors = this._initErrors(params.errors);
-    this.response = params.response || {};
+    return _possibleConstructorReturn(this, (Response.__proto__ || Object.getPrototypeOf(Response)).apply(this, arguments));
   }
 
   _createClass(Response, [{
-    key: '_initErrors',
-    value: function _initErrors(errors) {
-      if (!errors) {
-        return null;
-      }
-
-      if (errors.isJoi) {
-        return this._mapJoiErrors(errors);
-      }
-
-      return this._defaultError();
+    key: '_defaultMsg',
+    value: function _defaultMsg() {
+      return this.rawErrors.message_to_purchaser || 'Hubo un error procesando la tarjeta';
     }
   }, {
-    key: '_defaultError',
-    value: function _defaultError() {
-      return {
-        name: 'ProviderError',
-        message: 'There was an error processing the card.'
-      };
-    }
-  }, {
-    key: '_mapJoiErrors',
-    value: function _mapJoiErrors(errors) {
-      var messages = errors.details.map(function (err) {
-        return _defineProperty({}, err.path, [err.message]);
-      });
-
-      return {
-        name: 'ValidationError',
-        message: 'The card is not valid',
-        details: {
-          context: 'ConektaCard',
-          messages: messages
-        }
-      };
+    key: '_providerClass',
+    value: function _providerClass() {
+      return 'ConektaCard';
     }
   }]);
 
   return Response;
-}();
+}(_AbstractResponse3.default);
 
 exports.default = Response;

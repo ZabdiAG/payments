@@ -10,6 +10,10 @@ var _conektaCard = require('./conektaCard');
 
 var _conektaCard2 = _interopRequireDefault(_conektaCard);
 
+var _compropago = require('./compropago');
+
+var _compropago2 = _interopRequireDefault(_compropago);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -37,6 +41,9 @@ var NextPayments = function () {
       switch (type) {
         case 'ConektaCard':
           processor = new _conektaCard2.default(params);
+          break;
+        case 'ComproPago':
+          processor = new _compropago2.default(params);
           break;
         default:
           throw new Error('InvalidProcessorType');

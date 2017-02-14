@@ -10,10 +10,6 @@ var _bluebird = require('bluebird');
 
 var _bluebird2 = _interopRequireDefault(_bluebird);
 
-var _response = require('./response');
-
-var _response2 = _interopRequireDefault(_response);
-
 var _conekta = require('conekta');
 
 var _conekta2 = _interopRequireDefault(_conekta);
@@ -22,25 +18,38 @@ var _joi = require('joi');
 
 var _joi2 = _interopRequireDefault(_joi);
 
+var _AbstractProvider2 = require('../AbstractProvider');
+
+var _AbstractProvider3 = _interopRequireDefault(_AbstractProvider2);
+
+var _response = require('./response');
+
+var _response2 = _interopRequireDefault(_response);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-_conekta2.default.api_key = process.env.CONEKTA_API_KEY || 'key_eYvWV7gSDkNYXsmr'; // eslint-disable-line
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+_conekta2.default.api_key = process.env.CONEKTA_API_KEY || 'key_eYvWV7gSDkNYXsmr';
+_conekta2.default.locale = 'es';
 
 var schema = _joi2.default.object({
   card: _joi2.default.string().required(),
   amount: _joi2.default.number().required(),
   currency: _joi2.default.string().valid('mxn').required(),
-  reference_id: _joi2.default.string().required(), // eslint-disable-line
+  reference_id: _joi2.default.string().required(),
   details: _joi2.default.object().keys({
     name: _joi2.default.string().required(),
     email: _joi2.default.string().email().required(),
     phone: _joi2.default.string().required(),
-    line_items: _joi2.default.array().items(_joi2.default.object().keys({ // eslint-disable-line
+    line_items: _joi2.default.array().items(_joi2.default.object().keys({
       name: _joi2.default.string().required(),
       description: _joi2.default.string().required(),
-      unit_price: _joi2.default.number().required(), // eslint-disable-line
+      unit_price: _joi2.default.number().required(),
       quantity: _joi2.default.number().required(),
       sku: _joi2.default.string().required(),
       category: _joi2.default.string().required()
@@ -48,36 +57,16 @@ var schema = _joi2.default.object({
   }).required()
 });
 
-var ConektaCard = function () {
-  function ConektaCard() {
-    var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+var ConektaCard = function (_AbstractProvider) {
+  _inherits(ConektaCard, _AbstractProvider);
 
+  function ConektaCard() {
     _classCallCheck(this, ConektaCard);
 
-    this.params = params;
-    this.errors = [];
+    return _possibleConstructorReturn(this, (ConektaCard.__proto__ || Object.getPrototypeOf(ConektaCard)).apply(this, arguments));
   }
 
   _createClass(ConektaCard, [{
-    key: 'process',
-    value: function process() {
-      var _this = this;
-
-      var params = this.params;
-
-      return _bluebird2.default.try(function () {
-        if (!_this._isValid()) {
-          throw new _response2.default({ errors: _this.errors });
-        }
-
-        return _this._purchase(params).then(function (res) {
-          return new _response2.default({ response: res });
-        }).catch(function (err) {
-          throw new _response2.default({ errors: err });
-        });
-      });
-    }
-  }, {
     key: '_purchase',
     value: function _purchase(params) {
       return new _bluebird2.default(function (resolve, reject) {
@@ -91,25 +80,18 @@ var ConektaCard = function () {
       });
     }
   }, {
-    key: '_isValid',
-    value: function _isValid() {
-      var res = this._validate();
-      if (res.error) {
-        this.errors = res.error;
-        return false;
-      }
-
-      this.params = res.values;
-      return true;
+    key: '_schemaObj',
+    value: function _schemaObj() {
+      return schema;
     }
   }, {
-    key: '_validate',
-    value: function _validate() {
-      return _joi2.default.validate(this.params, schema, { stripUnknown: true });
+    key: '_respObj',
+    value: function _respObj(params) {
+      return new _response2.default(params);
     }
   }]);
 
   return ConektaCard;
-}();
+}(_AbstractProvider3.default);
 
 exports.default = ConektaCard;
