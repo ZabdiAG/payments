@@ -7,7 +7,7 @@ describe('ComproPago', () => {
     it('should return true', () => {
       let id = 'ch_bcf5b67a-b4d7-4ca1-858f-d8b1bd48d552'
       let amount = 123.45
-      nock('https://api.conekta.io')
+      nock('https://api.compropago.com/v1')
         .get(`/charges/${id}`)
         .reply(200, {
           status: 200,
@@ -40,7 +40,7 @@ describe('ComproPago', () => {
     })
 
     it('process a valid charge', () => {
-      nock('https://api.conekta.io')
+      nock('https://api.compropago.com/v1')
         .post('/charges')
         .reply(200, {
           status: 200,
